@@ -1,0 +1,185 @@
+# Conky Official Repository
+# https://github.com/brndnmtthws/conky
+#
+# USEFUL LINKS
+#
+# For commands above TEXT check:
+# http://conky.sourceforge.net/config_settings.html
+#
+# For commands available below TEXT check:
+# http://conky.sourceforge.net/variables.html
+#
+# GitHub WIki
+# https://github.com/brndnmtthws/conky/wiki
+#
+# Contributed Configs
+# https://github.com/brndnmtthws/conky/wiki/User-Configs
+#
+# Crunchbang Conky help threads
+# http://crunchbang.org/forums/viewtopic.php?pid=371424#p371424
+
+########################################################################
+# Window Settings 
+########################################################################
+own_window yes
+own_window_type normal
+own_window_transparent yes
+own_window_hints undecorated,below,skip_taskbar,skip_pager,sticky
+own_window_colour 000000
+own_window_class Conky
+own_window_title qwertymind Conky
+
+minimum_size  270 50  ### width | height
+maximum_width 270
+
+gap_x 20  # l|r
+gap_y 45    # u|d
+
+alignment tr
+########################################################################
+# Font Settings 
+########################################################################
+use_xft yes
+xftfont Sans-serif:size=10
+xftalpha 1
+override_utf8_locale yes
+uppercase no
+########################################################################
+# Colour Settings 
+########################################################################
+draw_shades no #yes
+default_shade_color 000000
+
+draw_outline no # amplifies text if yes
+default_outline_color 000000
+
+default_color C0C0C0 # Silver
+color0 B0E0E6 # PowderBlue
+color1 778899 # LightSlateGray
+color2 D8BFD8 # Thistle
+color3 9ACD32 # YellowGreen
+color4 FFA07A # LightSalmon
+color5 FFDEAD # NavajoWhite
+color6 00BFFF # DeepSkyBlue
+color7 5F9EA0 # CadetBlue
+color8 BDB76B # DarkKhaki
+color9 CD5C5C # IndianRed
+########################################################################
+# Borders Section 
+########################################################################
+draw_borders no
+stippled_borders 5
+border_inner_margin 5
+border_outer_margin 0
+border_width 2
+draw_graph_borders yes #no
+########################################################################
+# Miscellaneous Section 
+########################################################################
+background yes
+use_spacer none
+no_buffers yes
+short_units yes
+pad_percents 2
+imlib_cache_size 0
+double_buffer yes
+update_interval 1
+
+TEXT
+########################################################################
+# TIME
+########################################################################
+${color0}${font Liberation Sans:size=8}T I M E ${color1} ${hr 2} ${color2}${font}
+${alignc 75}${color4}${font Liberation Sans:pixelsize=50}${time %H:%M:%S}${font}
+${alignc 8}${color6}${font Liberation Sans:pixelsize=15}${time %a %d %b %Y}${font}
+########################################################################
+# System Information
+########################################################################
+${color0}${font Liberation Sans:size=8}S Y S T E M ${color1} ${hr 2} ${color2}${font}
+${font Liberation Sans:size=8}${color2}${offset 5}${pre_exec lsb_release -sd || cat /etc/*release}${font}
+${color2}${offset 5}${sysname}${offset 3}${kernel}${color}${alignr}${machine}
+${color2}${offset 5}Intel Core2 Quad ${color}${alignr}${cpu cpu0}% @ ${freq_g cpu0} GHz
+${color2}${offset 5}Load Average ${color}${alignr}${loadavg}
+${color2}${offset 5}Processes${alignr}${color}${alignr}$processes ($running_processes running)
+${color2}${offset 5}System Uptime${color}${alignr}${uptime_short}
+########################################################################
+# CPU
+########################################################################
+${voffset 5}${color0}${font Liberation Sans:size=8}C P U${color1} ${hr 2}${color}
+${color2}${offset 5}Core 1${color}${tab 15}${cpu cpu1}%${tab 20}${cpubar cpu1}
+${color2}${offset 5}Core 2${color}${tab 15}${cpu cpu2}%${tab 20}${cpubar cpu2}
+${color2}${offset 5}Core 3${color}${tab 15}${cpu cpu3}%${tab 20}${cpubar cpu3}
+${color2}${offset 5}Core 4${color}${tab 15}${cpu cpu4}%${tab 20}${cpubar cpu4}
+########################################################################
+# MEMORY
+########################################################################
+${voffset 5}${color0}${font Liberation Sans:size=8}M E M O R Y${color1} ${hr 2}${font}${color}
+${offset 5}${color2}${font Liberation Sans:size=8}RAM${tab 40}${membar}${font}${color}
+${offset 30}${color2}${font Liberation Sans:size=8}Size${goto 100}Used${goto 190}Free${font}${color}
+${offset 30}${font Liberation Sans:size=8}${memmax}${goto 100}${mem} (${memperc}%)${goto 190}${memfree}${font}
+#
+${offset 5}${color2}${font Liberation Sans:size=8}SWAP${tab 40}${swapbar}${font}${color}
+${offset 30}${color2}${font Liberation Sans:size=8}Size${goto 100}Used${goto 190}Free${font}${color}
+${offset 30}${font Liberation Sans:size=8}${swapmax}${goto 100}${swap} (${swapperc}%)${goto 190}${swapfree}${font}
+#
+########################################################################
+# HDD
+########################################################################
+${color0}${font Liberation Sans:size=8}F I L E   S Y S T E M${color1} ${hr 2}${font}${color}
+${offset 5}${color2}${font Liberation Sans:size=8}/${tab 40}${fs_bar /}${font}${color}
+${offset 30}${color2}${font Liberation Sans:size=8}Size${goto 100}Used${goto 190}Free${font}${color}
+${offset 30}${font Liberation Sans:size=8}${fs_size /}${goto 100}${fs_used /} (${fs_used_perc /}%)${goto 190}${fs_free /} (${fs_free_perc /}%)${font}
+#
+${offset 5}${color2}${font Liberation Sans:size=8}/tmp${tab 40}${fs_bar /tmp}${font}${color}
+${offset 30}${color2}${font Liberation Sans:size=8}Size${goto 100}Used${goto 190}Free${font}${color}
+${offset 30}${font Liberation Sans:size=8}${fs_size /tmp}${goto 100}${fs_used /tmp} (${fs_used_perc /tmp}%)${goto 190}${fs_free /tmp} (${fs_free_perc /tmp}%)${font}
+#
+${offset 5}${color2}${font Liberation Sans:size=8}/home${tab 40}${fs_bar /home}${font}${color}
+${offset 30}${color2}${font Liberation Sans:size=8}Size${goto 100}Used${goto 190}Free${font}${color}
+${offset 30}${font Liberation Sans:size=8}${fs_size /home}${goto 100}${fs_used /home} (${fs_used_perc /home}%)${goto 190}${fs_free /home} (${fs_free_perc /home}%)${font}
+#
+$stippled_hr
+${offset 5}${color2}${font Liberation Sans:size=8}/mnt/data${tab 40}${fs_bar /mnt/data}${font}${color}
+${offset 30}${color2}${font Liberation Sans:size=8}Size${goto 100}Used${goto 190}Free${font}${color}
+${offset 30}${font Liberation Sans:size=8}${fs_size /mnt/data}${goto 100}${fs_used /mnt/data} (${fs_used_perc /mnt/data}%)${goto 190}${fs_free /mnt/data} (${fs_free_perc /mnt/data}%)${font}
+#
+${offset 5}${color2}${font Liberation Sans:size=8}/mnt/archive${tab 40}${fs_bar /mnt/archive}${font}${color}
+${offset 30}${color2}${font Liberation Sans:size=8}Size${goto 100}Used${goto 190}Free${font}${color}
+${offset 30}${font Liberation Sans:size=8}${fs_size /mnt/archive}${goto 100}${fs_used /mnt/archive} (${fs_used_perc /mnt/archive}%)${goto 190}${fs_free /mnt/archive} (${fs_free_perc /mnt/archive}%)${font}
+########################################################################
+# NETWORKING
+########################################################################
+${voffset 5}${color0}${font Liberation Sans:size=8}N E T W O R K I N G${color1} ${hr 2}${font}${color}
+${if_existing /sys/class/net/wlan0/operstate up}${color6}wlan0 IP${color}${goto 80}${addr wlan0}
+${color2}Total Down${color}${goto 80}${totaldown wlan0}${goto 137}${color2}Total Up${color}${goto 200}${totalup wlan0}
+${color2}Download${color}${goto 80}${downspeed wlan0}/s${goto 137}${color2}Upload${color}${goto 200}${upspeed wlan0}/s
+${color #888888}${downspeedgraph wlan0 25,133 ff0000 0000ff}${offset 4}${color #888888}${upspeedgraph wlan0 25,133 0000ff ff0000}
+#
+${if_existing /sys/class/net/eth0/operstate up}$stippled_hr${endif}${endif}
+# eth0
+${if_existing /sys/class/net/eth0/operstate up}${color6}eth0 IP${color}${goto 80}${addr eth0}
+${color2}Total Down${color}${goto 80}${totaldown eth0}${goto 137}${color2}Total Up${color}${goto 200}${totalup eth0}
+${color2}Download${color}${goto 80}${downspeed eth0}/s${goto 137}${color2}Upload${color}${goto 200}${upspeed eth0}/s
+${color #888888}${downspeedgraph eth0 25,133 ff0000 0000ff}${offset 4}${color #888888}${upspeedgraph eth0 25,133 0000ff ff0000}${endif}
+########################################################################
+# PROCESSES
+########################################################################
+${voffset 5}${color0}${font Liberation Sans:size=8}${if_existing /sys/class/net/eth0/operstate up}${voffset -10}${else}${voffset -40}${endif}P R O C E S S E S${color1} ${hr 2}${font}${color}
+${color2}Name${goto 110}PID${goto 160}CPU%${goto 220}MEM%${color}
+${color9}${top name 1}${goto 110}${top pid 1}${goto 160}${top cpu 1}${goto 220}${top mem 1}${color}
+${top name 2}${goto 110}${top pid 2}${goto 160}${top cpu 2}${goto 220}${top mem 2}
+${top name 3}${goto 110}${top pid 3}${goto 160}${top cpu 3}${goto 220}${top mem 3}
+${top name 4}${goto 110}${top pid 4}${goto 160}${top cpu 4}${goto 220}${top mem 4}
+${top name 5}${goto 110}${top pid 5}${goto 160}${top cpu 5}${goto 220}${top mem 5}
+#${top name 6}${goto 110}${top pid 6}${goto 160}${top cpu 6}${goto 220}${top mem 6}
+#${top name 7}${goto 110}${top pid 7}${goto 160}${top cpu 7}${goto 220}${top mem 7}
+#${top name 8}${goto 110}${top pid 8}${goto 160}${top cpu 8}${goto 220}${top mem 8}
+$stippled_hr
+${color9}${top_mem name 1}${goto 110}${top_mem pid 1}${goto 160}${top_mem cpu 1}${goto 220}${top_mem mem 1}${color}
+${top_mem name 2}${goto 110}${top_mem pid 2}${goto 160}${top_mem cpu 2}${goto 220}${top_mem mem 2}
+${top_mem name 3}${goto 110}${top_mem pid 3}${goto 160}${top_mem cpu 3}${goto 220}${top_mem mem 3}
+${top_mem name 4}${goto 110}${top_mem pid 4}${goto 160}${top_mem cpu 4}${goto 220}${top_mem mem 4}
+${top_mem name 5}${goto 110}${top_mem pid 5}${goto 160}${top_mem cpu 5}${goto 220}${top_mem mem 5}
+#${top_mem name 6}${goto 110}${top_mem pid 6}${goto 160}${top_mem cpu 6}${goto 220}${top_mem mem 6}
+#${top_mem name 7}${goto 110}${top_mem pid 7}${goto 160}${top_mem cpu 7}${goto 220}${top_mem mem 7}
+#${top_mem name 8}${goto 110}${top_mem pid 8}${goto 160}${top_mem cpu 8}${goto 220}${top_mem mem 8}
